@@ -1,0 +1,89 @@
+<!--Step 1: add [formGroup] attribute to form tag. Add (ngSubmit) event-->
+<form [formGroup]="formGroup" (ngSubmit)="submit()">
+  <!--Step 2: add necessary form elements. Add formControlName attribute to form control. Set control name as it's value-->
+  <mat-form-field class="example-full-width">
+    <mat-label>First name</mat-label>
+    <input type="text" matInput formControlName="firstName" placeholder="First name">
+    <!--You can get control validation errors from .hasError of control or formGroup.errors object-->
+    <mat-error *ngIf="formGroup.get('firstName')?.hasError('required')">
+      First name is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Last name</mat-label>
+    <input type="text" matInput formControlName="lastName" placeholder="Last name">
+    <mat-error *ngIf="formGroup.get('lastName')?.hasError('required')">
+      Last name is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Email</mat-label>
+    <input type="email" matInput formControlName="email" placeholder="Email">
+    <mat-error *ngIf="formGroup.get('email')?.hasError('required')">
+      Email is <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="formGroup.get('email')?.hasError('email')">
+      Wrong email format
+    </mat-error>
+  </mat-form-field>
+
+  <hr>
+  <h2>Dynamic control</h2>
+
+  <mat-form-field *ngIf="formGroup.get('country')" class="example-full-width">
+    <mat-label>Country</mat-label>
+    <input type="text" matInput formControlName="country" placeholder="Country">
+  </mat-form-field>
+
+  <button *ngIf="!formGroup.get('country')" mat-button color="accent" type="button" (click)="addCountryField()">Add country field</button>
+  <button *ngIf="formGroup.get('country')" mat-button color="accent" type="button" (click)="removeCountryField()">Remove country field
+  </button>
+
+  <hr>
+  <h2>Child form group</h2>
+
+  <div class="additional-fields" formGroupName="additionalFields">
+    <mat-form-field class="example-full-width">
+      <mat-label>Field #1</mat-label>
+      <input type="text" matInput formControlName="field1" placeholder="Field #1">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Field #2</mat-label>
+      <input type="text" matInput formControlName="field2" placeholder="Field #2">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Field #3</mat-label>
+      <input type="text" matInput formControlName="field3" placeholder="Field #3">
+    </mat-form-field>
+  </div>
+
+  <hr>
+  <h2>Form array</h2>
+
+  <div class="skills">
+    <mat-form-field class="example-full-width skills-input">
+      <mat-label>Field #3</mat-label>
+      <input #skillsInput type="text" matInput placeholder="Field #3">
+    </mat-form-field>
+    <button mat-raised-button color="accent" type="button" class="skills-button" (click)="addSkill(skillsInput.value)">Add skill</button>
+
+
+    <div class="skills-list">
+      <div class="skill" *ngFor="let skill of skillsArray?.controls; let idx = index">
+        <span>{{skill.value}}</span>
+        <button (click)="removeSkill(idx)">x</button>
+      </div>
+    </div>
+  </div>
+  <hr>
+
+  <!--Step 3: add submit button. IMPORTANT: submit button should contains type="submit" attribute. All other form buttons should contains "type" attribute with value different from "submit"-->
+  <button mat-raised-button color="primary" type="submit" [disabled]="formGroup.invalid">Submit</button>
+  <button mat-raised-button color="accent" type="button" (click)="reset()">Reset</button>
+</form>
+
+
+<!--Form controls value log-->
+<pre>{{formGroup.value | json}}</pre>

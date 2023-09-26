@@ -1,0 +1,26 @@
+nav {
+  position: sticky;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  padding: 1.4rem;
+
+  border-bottom: 1px solid grey;
+
+  ul {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+  }
+}
+
+a {
+  font-size: 1.6rem;
+  text-decoration: none;
+
+  &.active {
+    text-decoration: underline;
+  }
+}

@@ -1,0 +1,5 @@
+<nav>
+  <ul>
+    <li *ngFor="let link of links"><a [routerLink]="['/' + link.href]" [routerLinkActive]="'active'">{{link.name}}</a></li>
+  </ul>
+</nav>

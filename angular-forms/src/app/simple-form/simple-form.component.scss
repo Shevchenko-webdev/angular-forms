@@ -1,0 +1,65 @@
+form {
+  padding: 1.4rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  align-items: flex-start;
+}
+
+.additional-fields {
+  display: flex;
+  gap: 2.4rem;
+}
+
+hr {
+  width: 100%;
+}
+
+.skills {
+  display: grid;
+  grid-template-areas:
+    'input button'
+    'skills skills';
+  gap: 1.4rem;
+
+  .skills-input {
+    grid-area: input;
+  }
+
+  .skills-button {
+    grid-area: button
+  }
+
+  .skills-list {
+    padding: 4px;
+
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    grid-area: skills
+  }
+}
+
+.skill {
+  padding: .4rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  font-size: 1.6rem;
+
+  border: 1px solid gray;
+  border-radius: 4px;
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1rem;
+    height: 1rem;
+
+    background-color: transparent;
+    border: none;
+  }
+}
