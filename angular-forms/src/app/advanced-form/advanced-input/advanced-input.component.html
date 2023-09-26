@@ -1,0 +1,10 @@
+<label>{{label}}
+  <input [(ngModel)]="value" type="text" (blur)="onTouch()">
+</label>
+<div *ngIf="ngControl.invalid && ngControl.touched" class="errors">
+  <p *ngIf="ngControl.errors?.['required']" class="error">{{label}} is required</p>
+  <p *ngIf="ngControl.errors?.['email']" class="error">Invalid {{label}} format</p>
+  <p *ngIf="ngControl.errors?.['minlength']" class="error">{{label}} should be at least {{ngControl.errors?.['minlength']['requiredLength']}} symbols. Current length is {{ngControl.errors?.['minlength']['actualLength']}}</p>
+</div>
+
+{{ngControl.errors | json}}
