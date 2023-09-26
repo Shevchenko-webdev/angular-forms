@@ -1,8 +1,14 @@
-form {
+:host {
   padding: 1.4rem;
+
+  display: block;
+}
+
+form {
+  margin-top: 2.4rem;
 
   display: flex;
   flex-direction: column;
-  gap: 2.4rem;
   align-items: flex-start;
+  gap: 2.4rem;
 }

@@ -48,7 +48,7 @@ export class SimpleFormComponent implements OnInit {
     this.formGroup.removeControl('country');
   }
 
-  addSkill(value: string) {
+  addSkill() {
     const control = new FormControl(this.skillsInput.nativeElement.value);
     this.skillsInput.nativeElement.value = null;
 
@@ -71,7 +71,7 @@ export class SimpleFormComponent implements OnInit {
     this.formGroup.reset();
   }
 
-  test() {
+  log() {
     // Form control get be received using .get('control-name') method
     console.log(this.formGroup.get('lastName'));
     // Form valid/invalid value can be received using 'invalid'/'valid' properties
@@ -83,6 +83,7 @@ export class SimpleFormComponent implements OnInit {
 
     // you can watch form or form control value changes using .valueChanges
     this.formGroup.valueChanges.subscribe(value => console.log(value));
+
     this.formGroup.get('email')?.valueChanges.subscribe(value => console.log(value));
   }
 }

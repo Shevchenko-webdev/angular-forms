@@ -1,15 +1,23 @@
+<label style="display:flex;align-items:center;gap:.4rem">
+  Log errors?
+  <input type="checkbox" name="" id="" [(ngModel)]="logErrors" label="">
+</label>
 <form [formGroup]="formGroup" (ngSubmit)="submit()">
   <app-advanced-input formControlName="firstName"
                       label="First name"
+                      [logErrors]="logErrors"
   ></app-advanced-input>
   <app-advanced-input formControlName="lastName"
                       label="Last name"
+                      [logErrors]="logErrors"
   ></app-advanced-input>
   <app-advanced-input formControlName="email"
                       label="Email"
+                      [logErrors]="logErrors"
   ></app-advanced-input>
 
   <button mat-raised-button color="primary" type="submit" [disabled]="formGroup.invalid">Submit</button>
+
+  <pre>{{formGroup.value | json}}</pre>
 </form>
 
-<pre>{{formGroup.value | json}}</pre>
